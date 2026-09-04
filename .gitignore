@@ -1,0 +1,6 @@
+/vendor/
+
+.env
+
+/protected/runtime/*
+!/protected/runtime/.gitkeep
