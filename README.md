@@ -239,7 +239,7 @@ Esse endpoint verifica se:
 Exemplo:
 
 ```bash
-curl -i http://localhost/health
+curl -i http://localhost:8080/health
 ```
 
 Resposta:
@@ -412,7 +412,7 @@ Princípios como **SOLID** serão utilizados para resolver problemas concretos d
 * [x] Yii
 * [x] MySQL
 * [x] Health check
-* [ ] README inicial
+* [x] README inicial
 
 ### Fase 2 — Fundamentos
 
