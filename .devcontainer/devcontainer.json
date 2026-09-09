@@ -1,0 +1,32 @@
+{
+    "name": "MoveX Development",
+
+    "dockerComposeFile": "../docker-compose.yml",
+
+    "service": "app",
+
+    "workspaceFolder": "/var/www/html",
+
+    "shutdownAction": "stopCompose",
+
+    "forwardPorts": [
+        80
+    ],
+
+    "portsAttributes": {
+        "80": {
+            "label": "MoveX API",
+            "onAutoForward": "notify"
+        }
+    },
+
+    "postCreateCommand": "composer install --no-interaction",
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "bmewburn.vscode-intelephense-client"
+            ]
+        }
+    }
+}

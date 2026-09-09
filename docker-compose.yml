@@ -1,0 +1,49 @@
+services:
+  app:
+    build:
+      context: .
+
+    volumes:
+      - .:/var/www/html
+
+    ports:
+      - "8080:80"
+
+    environment:
+      APP_ENV: development
+      APP_DEBUG: "true"
+
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: movex_dev
+      DB_USERNAME: movex
+      DB_PASSWORD: movex_dev_only_password
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:8.4
+
+    environment:
+      MYSQL_DATABASE: movex_dev
+      MYSQL_USER: movex
+      MYSQL_PASSWORD: movex_dev_only_password
+      MYSQL_ROOT_PASSWORD: root_dev_only_password
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "mysqladmin ping -h localhost -uroot -p$$MYSQL_ROOT_PASSWORD"
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  mysql_data:
