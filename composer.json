@@ -1,0 +1,14 @@
+{
+    "name": "movex/platform",
+    "description": "MoveX white-label mobility and delivery platform",
+    "type": "project",
+
+    "require": {
+        "php": "^8.4",
+        "yiisoft/yii": "1.1.32"
+    },
+
+    "config": {
+        "sort-packages": true
+    }
+}
