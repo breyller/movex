@@ -257,6 +257,13 @@ Estão previstos:
 
 O objetivo é priorizar testes sobre comportamentos e regras de negócio, evitando acoplamento excessivo à implementação interna.
 
+### Executando os testes
+
+Com os containers em execução:
+
+```bash
+docker compose exec app ./vendor/bin/phpunit
+
 ---
 
 ## Princípios de desenvolvimento
