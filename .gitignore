@@ -4,3 +4,6 @@
 
 /protected/runtime/*
 !/protected/runtime/.gitkeep
+
+.phpunit.result.cache
+.phpunit.cache/
