@@ -263,6 +263,7 @@ Com os containers em execução:
 
 ```bash
 docker compose exec app ./vendor/bin/phpunit
+```
 
 ---
 
