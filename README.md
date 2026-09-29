@@ -127,30 +127,100 @@ O endpoint verifica se:
 
 ---
 
+## Migrations
+
+O MoveX utiliza o mecanismo nativo de migrations do Yii para versionar e controlar a evolução do schema do banco de dados.
+
+As migrations ficam armazenadas em:
+
+```text
+protected/migrations/
+```
+
+Os comandos devem ser executados através da aplicação de console do Yii, dentro do container `app`.
+
+### Criar uma migration
+
+```bash
+docker compose exec app php protected/yiic.php migrate create nome_da_migration
+```
+
+### Aplicar migrations pendentes
+
+```bash
+docker compose exec app php protected/yiic.php migrate
+```
+
+### Reverter a última migration
+
+```bash
+docker compose exec app php protected/yiic.php migrate down
+```
+
+### Consultar migrations aplicadas
+
+```bash
+docker compose exec app php protected/yiic.php migrate history
+```
+
+### Consultar migrations pendentes
+
+```bash
+docker compose exec app php protected/yiic.php migrate new
+```
+
+O Yii mantém o histórico das migrations aplicadas na tabela `tbl_migration`.
+
+Migrations já aplicadas e compartilhadas não devem ser modificadas. Alterações posteriores no schema devem ser realizadas através de novas migrations, preservando o histórico de evolução do banco.
+
+## Estrutura principal
+
+```text
 ## Estrutura principal
 
 ```text
 movex/
 ├── .devcontainer/
+│   └── devcontainer.json
+├── .github/
+│   └── pull_request_template.md
 ├── protected/
 │   ├── config/
+│   │   ├── console.php
+│   │   ├── database.php
+│   │   └── main.php
 │   ├── controllers/
-│   └── runtime/
+│   │   └── SiteController.php
+│   ├── migrations/
+│   │   └── .gitkeep
+│   ├── runtime/
+│   │   └── .gitkeep
+│   └── yiic.php
 ├── public/
 │   ├── .htaccess
 │   └── index.php
+├── tests/
+│   └── Unit/
+│       └── ExampleTest.php
+├── .gitignore
 ├── Dockerfile
 ├── docker-compose.yml
 ├── composer.json
 ├── composer.lock
+├── phpunit.xml.dist
 └── README.md
 ```
 
 A pasta `public/` é utilizada como **DocumentRoot** do Apache.
 
-Código da aplicação, configurações e dependências permanecem fora da área diretamente exposta pelo servidor HTTP.
+O código da aplicação, configurações e dependências permanecem fora da área diretamente exposta pelo servidor HTTP.
 
----
+A configuração de banco de dados compartilhada pelas aplicações web e console está centralizada em `protected/config/database.php`.
+
+Os comandos de console do Yii são inicializados através de `protected/yiic.php`, utilizando a configuração definida em `protected/config/console.php`.
+
+As migrations responsáveis pela evolução versionada do schema do banco de dados são armazenadas em `protected/migrations/`.
+```
 
 ## Workflow de desenvolvimento
 
