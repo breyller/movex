@@ -173,9 +173,8 @@ O Yii mantém o histórico das migrations aplicadas na tabela `tbl_migration`.
 
 Migrations já aplicadas e compartilhadas não devem ser modificadas. Alterações posteriores no schema devem ser realizadas através de novas migrations, preservando o histórico de evolução do banco.
 
-## Estrutura principal
+---
 
-```text
 ## Estrutura principal
 
 ```text
@@ -220,7 +219,8 @@ A configuração de banco de dados compartilhada pelas aplicações web e consol
 Os comandos de console do Yii são inicializados através de `protected/yiic.php`, utilizando a configuração definida em `protected/config/console.php`.
 
 As migrations responsáveis pela evolução versionada do schema do banco de dados são armazenadas em `protected/migrations/`.
-```
+
+---
 
 ## Workflow de desenvolvimento
 
